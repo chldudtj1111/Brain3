@@ -1,8 +1,10 @@
-package com.example.brain3;
+package com.example.brain3.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.brain3.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +14,4 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
-//최영서//
-
-//최준원//
-//김완기 ㅁㄴㅇㄻㄴㅇㄻㄴㅇ이제되었나?
+//mainactivity는 인트로이후의 첫화면을 보여준다 여기서는 알람 설정및 확인을 할수있는 UI를 만들예정이다.
