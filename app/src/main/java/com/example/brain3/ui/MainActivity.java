@@ -3,7 +3,7 @@ package com.example.brain3.ui;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-
+import java.util.Random;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
@@ -76,25 +76,52 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void startAlarm(Calendar c){
+        Random random = new Random();
+        int a = random.nextInt(20);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
+
+        if(a/2==0){
+        Intent intent = new Intent(this, Doshake.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
 
         if(c.before((Calendar.getInstance()))){
             c.add(Calendar.DATE, 1);
         }
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);}
+        else if(a/2!=0){
+            Intent intent = new Intent(this, AlertReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
+
+            if(c.before((Calendar.getInstance()))){
+                c.add(Calendar.DATE, 1);
+            }
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);}
+
+        }
         //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), 1*60*1000 ,  pendingIntent);
 
-    }
 
-    private void cancelAlarm(){
+
+    private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        Random random = new Random();
+        int a = random.nextInt(20);
+        if (a / 2 == 0) {
+            Intent intent = new Intent(this, Doshake.class);
 
-        alarmManager.cancel(pendingIntent);
-        mTextView.setText("Alarm canceled");
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+            alarmManager.cancel(pendingIntent);
+            mTextView.setText("Alarm canceled");
+        } else if (a / 2 != 0) {
+            Intent intent = new Intent(this, AlertReceiver.class);
+
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+            alarmManager.cancel(pendingIntent);
+            mTextView.setText("Alarm canceled");
+        }
     }
-
 }
