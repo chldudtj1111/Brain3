@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.brain3.event.Tab;
+
 public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

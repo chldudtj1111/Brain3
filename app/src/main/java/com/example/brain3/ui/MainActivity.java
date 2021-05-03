@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.brain3.R;
+import com.example.brain3.event.Tab;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -29,10 +30,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         setContentView(R.layout.layout_main);
-
 
         mTextView =  findViewById(R.id.textView);
 
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
             }
-
         });
 
         Button buttonCancelAlarm = findViewById(R.id.button_cancel);
@@ -92,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent pedingm = PendingIntent.getActivity(MainActivity.this, 0, new Intent(getApplicationContext(), Tab.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
         alarmManager.cancel(pendingIntent);
         mTextView.setText("Alarm canceled");
