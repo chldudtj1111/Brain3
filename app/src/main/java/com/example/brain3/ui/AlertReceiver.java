@@ -1,5 +1,6 @@
 package com.example.brain3.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
@@ -13,7 +14,7 @@ import com.example.brain3.R;
 
 import java.util.Random;
 
-public class AlertReceiver extends AppCompatActivity {
+public class AlertReceiver extends Activity {
 
     public static Context context_main;
     public int rd;

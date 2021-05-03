@@ -14,7 +14,7 @@ public class AlertReceiver2 extends AppCompatActivity {
         setContentView(R.layout.tabactivity2);
     }
     public void EventBtn1(View v){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
         int rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
         EditText editText = (EditText)findViewById(R.id.editTextNumber2);
         String text1 = editText.getText().toString();
