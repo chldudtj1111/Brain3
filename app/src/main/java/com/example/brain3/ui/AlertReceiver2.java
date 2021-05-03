@@ -23,8 +23,8 @@ public class AlertReceiver2 extends AppCompatActivity {
             moveTaskToBack(true);
             finish();
             android.os.Process.killProcess(android.os.Process.myPid());
-
         } else
             startActivity(intent);
+
     }
 }

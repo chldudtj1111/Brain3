@@ -24,7 +24,6 @@ public class AlertReceiver extends Activity {
         public void handleMessage(Message msg) {
             /* text = (TextView) findViewById(R.id.textView);*/
             count++;
-
             mHandler.removeMessages(0);
         }
     };
@@ -38,7 +37,6 @@ public class AlertReceiver extends Activity {
                 mHandler.sendEmptyMessageDelayed(0, 100);
                 return false;
             }
-
         });
 
     }
@@ -46,24 +44,17 @@ public class AlertReceiver extends Activity {
     public void mOnclick(View v) {
         text = (TextView) findViewById(R.id.textView);
         count++;
-        int imageResources[] = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4, R.drawable.end};
+        int imageResources[] = {R.drawable.du1, R.drawable.du2, R.drawable.du3, R.drawable.du4, R.drawable.du5};
         ImageView img = (ImageView) findViewById(R.id.imageView);
-
+        Random ra = new Random();
+        int a = ra.nextInt(5);
         img.setX((int) (Math.random() * 800));
         img.setY((int) (Math.random() * 800));
-
+        img.setImageResource(imageResources[a]);
         mHandler.removeMessages(0);
-        int min = 15;
-        int max = 40;
+
         Random myr = new Random();
-        rd = myr.nextInt(max-min +1) + min;
-
-        if (count == (int) rd * 40 / 100)
-            img.setImageResource(imageResources[2]);
-
-        if (count == (int) rd * 70 / 100)
-            img.setImageResource(imageResources[3]);
-
+        rd = myr.nextInt(40) + 20;
 
         if (count == rd) {
             int input = 0;
@@ -72,7 +63,7 @@ public class AlertReceiver extends Activity {
             intent.putExtra("숫자", rd);
             context_main = this;
             startActivity(intent);
-            img.setImageResource(imageResources[4]);
+
         }
     }
 

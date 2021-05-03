@@ -11,7 +11,7 @@
         android:layout_width="197dp"
         android:layout_height="147dp"
         android:onClick="mOnclick"
-        android:src="@drawable/img1"
+        android:src="@drawable/du1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
