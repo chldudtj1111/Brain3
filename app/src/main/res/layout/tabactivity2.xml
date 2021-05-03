@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".event.Tab2">
+    tools:context=".ui.AlertReceiver2">
 
     <Button
         android:id="@+id/button"
