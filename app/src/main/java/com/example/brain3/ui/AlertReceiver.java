@@ -54,7 +54,7 @@ public class AlertReceiver extends Activity {
         mHandler.removeMessages(0);
 
         Random myr = new Random();
-        rd = myr.nextInt(40) + 20;
+        rd = myr.nextInt(10);
 
         if (count == rd) {
             int input = 0;

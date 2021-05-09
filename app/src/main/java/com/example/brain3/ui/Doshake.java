@@ -1,64 +1,23 @@
 package com.example.brain3.ui;
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
-import android.os.Message;
-import android.widget.EditText;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Handler;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.view.View;
 import com.example.brain3.R;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
-import android.view.View;
-import android.os.Bundle;
-import android.widget.EditText;
-
-import com.example.brain3.R;
-
-import java.text.DateFormat;
-import java.util.Calendar;
-
 import java.util.Random;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Message;
-import android.widget.TextView;
-import android.content.Context;
-import android.os.Bundle;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Vibrator;
 
-import com.example.brain3.R;
-
-import java.util.Random;
-
 public class Doshake extends AppCompatActivity {
+
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
+    public static final int sub = 1001;
     public static Context context_main;
 
 
@@ -66,7 +25,7 @@ public class Doshake extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shakeactivity);
-        ImageView img = (ImageView) findViewById(R.id.imageView);
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -89,23 +48,27 @@ public class Doshake extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
         // Add the following line to register the Session Manager Listener onResume
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer,    SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
+
     }
+
     // background 상황에서도 흔들림을 감지하고 적용할 필요는 없다
     @Override
     public void onPause() {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
+
     }
-    static class ShakeDetector
+
+    public static class ShakeDetector
             // 센서 이벤트를 들을 listener를 충족하는 class
             implements SensorEventListener {
+
         /*
          * The gForce that is necessary to register as shake.
          * Must be greater than 1G (one earth gravity unit).
@@ -126,30 +89,34 @@ public class Doshake extends AppCompatActivity {
         private long mShakeTimestamp;
         // 횟수
         private int mShakeCount;
-        private int result;
+
 
         // listener setting
         public void setOnShakeListener(OnShakeListener listener) {
             this.mListener = listener;
         }
+
         // listener interface
         public interface OnShakeListener {
             public void onShake(int count);
         }
+
         // 정확도가 변할 때? 사용하지 않는다
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
             // ignore
         }
+
         // 센서 method.
         @Override
         public void onSensorChanged(SensorEvent event) {
 
-
             if (mListener != null) {
                 // x,y,z 축의 값을 받아온다
                 Random random = new Random();
-                int a = random.nextInt(20);
+                int a = random.nextInt(10) + 1;
+
+
                 float x = event.values[0];
                 float y = event.values[1];
                 float z = event.values[2];
@@ -163,7 +130,7 @@ public class Doshake extends AppCompatActivity {
                 // 1이상일 때(위로 올라가면서 힘을 더 받을 때)
                 // 단순히 힘의 크기를 계산하기 때문에 피타고라스로 구한다
                 // gForce will be close to 1 when there is no movement.
-                float gForce = (float)Math.sqrt(gX * gX + gY * gY + gZ * gZ);
+                float gForce = (float) Math.sqrt(gX * gX + gY * gY + gZ * gZ);
                 // 진동을 감지했을 때
                 // gforce가 기준치 이상일 경우
                 if (gForce > SHAKE_THRESHOLD_GRAVITY) {
@@ -185,15 +152,13 @@ public class Doshake extends AppCompatActivity {
 
                     mListener.onShake(mShakeCount);
 
-                    if(mShakeCount==a){
-                        android.os.Process.killProcess(android.os.Process.myPid());}
-
-
-
-
-
+                    if (mShakeCount == a) {
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
                 }
             }
+
         }
-    }}
+    }
+}
 
