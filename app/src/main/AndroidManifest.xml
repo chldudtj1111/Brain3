@@ -20,10 +20,16 @@
 
         <activity android:name=".ui.AlertReceiver"></activity>
         <activity android:name=".ui.AlertReceiver2"></activity>
+        <activity android:name=".ui.Howmanyshake"></activity>
+        <activity android:name=".ui.Doshake"></activity>
         <activity android:name=".ui.hello"></activity>
 
 
 
     </application>
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+    <uses-permission android:name = "android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
 </manifest>
