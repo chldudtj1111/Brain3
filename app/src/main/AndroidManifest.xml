@@ -23,6 +23,7 @@
         <activity android:name=".ui.Howmanyshake"></activity>
         <activity android:name=".ui.Doshake"></activity>
         <activity android:name=".ui.hello"></activity>
+        <activity android:name=".event.Game"></activity>
 
 
 
