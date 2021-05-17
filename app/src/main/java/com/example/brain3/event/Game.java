@@ -39,6 +39,28 @@ public class Game extends Activity {
         EditText editText = (EditText) findViewById(R.id.editTextTextMultiLine);
         String result = editText.getText().toString();
 
+        if (result.equals("빨간색") || result.equals("빨강") || result.equals("빨강색")){
+            result = "red";
+        }
+        if (result.equals("주황색") || result.equals("주황")){
+            result = "orange";
+        }
+        if (result.equals("노란색") || result.equals("노랑") || result.equals("노랑색")){
+            result = "yellow";
+        }
+        if (result.equals("초록색") || result.equals("초록")){
+            result = "green";
+        }
+        if (result.equals("파란색") || result.equals("파랑")|| result.equals("파랑색")){
+            result = "blue";
+        }
+        if (result.equals("남색") || result.equals("남")){
+            result = "navy";
+        }
+        if (result.equals("보라색") || result.equals("보라")){
+            result = "purple";
+        }
+
         Intent intent = new Intent(getApplicationContext(), Game.class);
         if (result.equals(color1)) {
             ActivityCompat.finishAffinity(Game.this);
