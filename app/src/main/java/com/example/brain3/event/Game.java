@@ -24,6 +24,7 @@ public class Game extends Activity {
         int rd = (int) (Math.random() * 7);
         int rd2 = (int) (Math.random() * 7);
         color1 = text2[rd2];
+
         if (rd == rd2){
             rd = (int) (Math.random() * 7);
             rd2 = (int) (Math.random() * 7);
