@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.brain3.R;
+import com.example.brain3.event.Game;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
 
-        Intent intent = new Intent(this, Doshake.class);
+        Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
 
         if(c.before((Calendar.getInstance()))){
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         Random random = new Random();
         int a = random.nextInt(20);
 
-        Intent intent = new Intent(this, Doshake.class);
+        Intent intent = new Intent(this, AlertReceiver.class);
 
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);

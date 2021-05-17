@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Handler;
 import android.os.Bundle;
 import android.widget.ImageView;
