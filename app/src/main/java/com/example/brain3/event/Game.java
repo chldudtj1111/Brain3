@@ -21,8 +21,9 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorgm);
 
-        int rd = (int) (Math.random() * 7);
-        int rd2 = (int) (Math.random() * 7);
+        int rd = (int) (Math.random() * 6);
+        int rd2 = (int) (Math.random() * 6);
+        int rd3 = (int) (Math.random()*90)+20;
         color1 = text2[rd2];
 
         if (rd == rd2){
@@ -33,6 +34,7 @@ public class Game extends Activity {
             TextView text = (TextView) findViewById(R.id.coltext);
             text.setText(text1[rd]);
             text.setTextColor(Color.parseColor(color1));
+            text.setTextSize(rd3);
         }
     }
 
