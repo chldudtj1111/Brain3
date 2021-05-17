@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
@@ -33,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.brain3.R;
+import com.example.brain3.event.Game;
 
 import java.util.Random;
 
@@ -101,7 +103,7 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
     @Override
     public void onSensorChanged(SensorEvent event) {
         Random random = new Random();
-        int x = random.nextInt(15);
+
         // 걸음 센서 이벤트 발생시
         if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR){
 
@@ -109,8 +111,10 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
                 // 센서 이벤트가 발생할때 마다 걸음수 증가
                 currentSteps++;
                 stepCountView.setText(String.valueOf(currentSteps));
-                if(currentSteps==x)
-                    android.os.Process.killProcess(android.os.Process.myPid());
+                if(currentSteps==random.nextInt(9)+1){
+
+                    ActivityCompat.finishAffinity(Stepcount.this);
+                    System.exit(0);}
             }
 
         }
