@@ -6,6 +6,12 @@
     <uses-feature android:name="android.hardware.sensor.stepdetector" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
 
+
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,15 +32,11 @@
         <activity android:name=".ui.AlertReceiver2"></activity>
         <activity android:name=".ui.Howmanyshake"></activity>
         <activity android:name=".ui.Doshake"></activity>
-        <activity android:name=".ui.hello"></activity>
         <activity android:name=".event.Game"></activity>
+        <activity android:name=".ui.Message"></activity>
 
 
 
     </application>
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
-    <uses-permission android:name = "android.permission.VIBRATE"/>
-
-    <uses-permission android:name="android.permission.VIBRATE"/>
 
 </manifest>

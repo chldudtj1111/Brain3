@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void startAlarm(Calendar c) {
         Random random = new Random();
-
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        rd1 = random.nextInt(3)+1;
+        //rd1 = random.nextInt(3)+1;
+        rd1=4;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
         if (rd1 == 4) {
-            Intent intent = new Intent(this, Stepcount.class);
+            Intent intent = new Intent(this, Message.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Random random = new Random();
+        int a = random.nextInt(20);
+
 
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             mTextView.setText("Alarm canceled");
         }
         if (rd1 == 4) {
-            Intent intent = new Intent(this, Stepcount.class);
+            Intent intent = new Intent(this, AlertReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
