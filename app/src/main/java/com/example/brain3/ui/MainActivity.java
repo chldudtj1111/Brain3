@@ -18,7 +18,6 @@ import android.widget.TimePicker;
 
 import com.example.brain3.R;
 import com.example.brain3.event.Game;
-import com.example.brain3.event.Shake;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void startAlarm(Calendar c) {
         Random random = new Random();
-        int a = random.nextInt(20);
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         rd1 = random.nextInt(3)+1;
@@ -108,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Random random = new Random();
-        int a = random.nextInt(20);
 
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);

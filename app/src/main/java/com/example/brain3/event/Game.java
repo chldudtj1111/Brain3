@@ -67,34 +67,6 @@ public class Game extends Activity {
             ActivityCompat.finishAffinity(Game.this);
             System.exit(0);
         }
-
-        else if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
-        }
-        else if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
-        }
-
-        else if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
-        }
-
-        else if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
-        }
-        else if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
-        }
-
-        else if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
-        }
         else {
             startActivity(intent);
         }
