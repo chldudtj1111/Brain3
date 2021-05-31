@@ -3,6 +3,9 @@ package com.example.brain3.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Message;
 import android.widget.TextView;
 
@@ -38,6 +41,9 @@ public class AlertReceiver extends Activity {
                 return false;
             }
         });
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        ringtone.play();
 
     }
 
