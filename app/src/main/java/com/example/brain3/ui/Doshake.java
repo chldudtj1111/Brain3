@@ -3,6 +3,10 @@ package com.example.brain3.ui;
 import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import com.example.brain3.R;
 import java.util.Random;
@@ -45,6 +49,9 @@ public class Doshake extends AppCompatActivity {
                 vibrator.vibrate(500);
             }
         });
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        ringtone.play();
     }
 
 

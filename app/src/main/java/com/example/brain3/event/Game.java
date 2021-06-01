@@ -6,6 +6,9 @@ import androidx.core.app.ActivityCompat;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -36,6 +39,9 @@ public class Game extends Activity {
             text.setTextColor(Color.parseColor(color1));
             text.setTextSize(rd3);
         }
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        ringtone.play();
     }
 
     public void EventBtn1(View v) {
