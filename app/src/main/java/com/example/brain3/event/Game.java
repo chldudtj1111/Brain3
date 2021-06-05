@@ -10,6 +10,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -71,9 +72,11 @@ public class Game extends Activity {
         }
 
         Intent intent = new Intent(getApplicationContext(), Game.class);
+        Intent intent2 = new Intent(getApplicationContext(), Message.class);
         if (result.equals(color1)) {
-            ActivityCompat.finishAffinity(Game.this);
-            System.exit(0);
+            startActivity(intent2);
+            //ActivityCompat.finishAffinity(Game.this);
+            //System.exit(0);
         }
         else {
             startActivity(intent);

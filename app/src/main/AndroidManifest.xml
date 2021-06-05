@@ -27,6 +27,7 @@
         <activity android:name=".ui.Howmanyshake"></activity>
         <activity android:name=".ui.Doshake"></activity>
         <activity android:name=".ui.hello"></activity>
+        <activity android:name=".ui.Message"></activity>
         <activity android:name=".event.Game"></activity>
 
 
@@ -34,6 +35,7 @@
     </application>
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
     <uses-permission android:name = "android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <uses-permission android:name="android.permission.VIBRATE"/>
 
