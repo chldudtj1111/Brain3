@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.brain3.R;
 
-public class Message extends Activity {
+public class sendSMS extends Activity {
     Context mContext;
     EditText smsNumber, smsTextContext;
     Button send;
@@ -35,11 +35,11 @@ public class Message extends Activity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ContextCompat.checkSelfPermission(Message.this, Manifest.permission.SEND_SMS)
+                if(ContextCompat.checkSelfPermission(sendSMS.this, Manifest.permission.SEND_SMS)
                         == PackageManager.PERMISSION_GRANTED){
                     sendSMS();
                 }else{
-                    ActivityCompat.requestPermissions(Message.this,new String[]{Manifest.permission.SEND_SMS},100);
+                    ActivityCompat.requestPermissions(sendSMS.this,new String[]{Manifest.permission.SEND_SMS},100);
                 }
             }
         });

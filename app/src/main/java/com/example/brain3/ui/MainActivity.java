@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //Random random = new Random();
 
+        rd1=3;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);

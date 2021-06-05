@@ -15,19 +15,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.brain3.R;
+import com.example.brain3.ui.sendSMS;
 
 public class Game extends Activity {
-    String[] text1 = {"빨간색", "주황색", "노란색", "초록색", "파란색", "남색", "보라색"};
-    String[] text2 = {"red", "orange", "yellow", "green", "blue", "navy", "purple"};
+    public String[] text1 = {"빨간색", "주황색", "노란색", "초록색", "파란색", "남색", "보라색"};
+    public String[] text2 = {"red", "orange", "yellow", "green", "blue", "navy", "purple"};
     public String color1;
+    public int rd, rd2, rd3;
+    public TextView text;
+    public Uri notification;
+    public Ringtone ringtone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorgm);
 
-        int rd = (int) (Math.random() * 6);
-        int rd2 = (int) (Math.random() * 6);
-        int rd3 = (int) (Math.random()*90)+20;
+        rd = (int) (Math.random() * 6);
+        rd2 = (int) (Math.random() * 6);
+        rd3 = (int) (Math.random()*90)+20;
         color1 = text2[rd2];
 
         if (rd == rd2){
@@ -35,13 +40,13 @@ public class Game extends Activity {
             rd2 = (int) (Math.random() * 7);
         }
         else {
-            TextView text = (TextView) findViewById(R.id.coltext);
-            text.setText(text1[rd]);
+            text = (TextView) findViewById(R.id.coltext);
+            text.setText(text1[rd+1]);
             text.setTextColor(Color.parseColor(color1));
             text.setTextSize(rd3);
         }
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
         ringtone.play();
     }
 
@@ -71,16 +76,19 @@ public class Game extends Activity {
             result = "purple";
         }
 
-        Intent intent = new Intent(getApplicationContext(), Game.class);
-        Intent intent2 = new Intent(getApplicationContext(), Message.class);
+
+        Intent intent = getIntent();
+        Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
         if (result.equals(color1)) {
             startActivity(intent2);
             //ActivityCompat.finishAffinity(Game.this);
             //System.exit(0);
-        }
-        else {
-            startActivity(intent);
+        } else {
+            startActivity(new Intent(this, Game.class));
+            ringtone.stop();
+            ringtone.play();
+
         }
     }
 }
-//추가할미니게임
+//추가할미니게임tsxt

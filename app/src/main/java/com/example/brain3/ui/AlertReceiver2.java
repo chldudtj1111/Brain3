@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.brain3.R;
+
+import java.util.Random;
+
 public class AlertReceiver2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +17,7 @@ public class AlertReceiver2 extends AppCompatActivity {
         setContentView(R.layout.tabactivity2);
     }
     public void EventBtn1(View v){
+        Random myr = new Random(1);
         Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
         int rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
         EditText editText = (EditText)findViewById(R.id.editTextNumber2);
@@ -23,8 +27,10 @@ public class AlertReceiver2 extends AppCompatActivity {
             moveTaskToBack(true);
             finish();
             android.os.Process.killProcess(android.os.Process.myPid());
-        } else
+        } else {
+            rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
             startActivity(intent);
+        }
 
     }
 }

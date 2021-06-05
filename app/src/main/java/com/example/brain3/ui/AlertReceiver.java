@@ -30,6 +30,8 @@ public class AlertReceiver extends Activity {
             mHandler.removeMessages(0);
         }
     };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +56,37 @@ public class AlertReceiver extends Activity {
         ImageView img = (ImageView) findViewById(R.id.imageView);
         Random ra = new Random();
         int a = ra.nextInt(5);
+        int seed1 = ra.nextInt(10);
+        if(seed1 == 1)
+            seed1 = 1;
+        else if (seed1==2)
+            seed1 = 2;
+        else if(seed1 == 3)
+            seed1 = 3;
+        else if (seed1==4)
+            seed1 = 4;
+        else if(seed1 == 5)
+            seed1 = 5;
+        else if (seed1==6)
+            seed1 = 6;
+        else if(seed1 == 7)
+            seed1 = 7;
+        else if (seed1==8)
+            seed1 = 8;
+        else if(seed1 == 9)
+            seed1 = 9;
+        else if (seed1==10)
+            seed1 = 10;
         img.setX((int) (Math.random() * 800));
         img.setY((int) (Math.random() * 800));
         img.setImageResource(imageResources[a]);
         mHandler.removeMessages(0);
-
-        Random myr = new Random();
-        rd = myr.nextInt(40)+15;
-
+        Random myr = new Random(seed1);
+        rd = (int) myr.nextInt(40)+15;
+        if(count > rd){
+            rd = (int) myr.nextInt(40)+30;
+        }
+        System.out.println("값" + rd);
         if (count == rd) {
             int input = 0;
             count = 0;
@@ -69,7 +94,7 @@ public class AlertReceiver extends Activity {
             intent.putExtra("숫자", rd);
             context_main = this;
             startActivity(intent);
-
         }
+
     }
 }
