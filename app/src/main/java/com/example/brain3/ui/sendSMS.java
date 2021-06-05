@@ -56,6 +56,9 @@ public class sendSMS extends Activity {
         }else{
             Toast.makeText(this, "모두 입력해 주세요", Toast.LENGTH_SHORT).show();
         }
+        moveTaskToBack(true);
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     @Override

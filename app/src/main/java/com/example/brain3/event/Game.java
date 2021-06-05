@@ -6,10 +6,14 @@ import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.brain3.R;
 import com.example.brain3.ui.sendSMS;
@@ -22,6 +26,7 @@ public class Game extends Activity {
     public TextView text;
     public Uri notification;
     public Ringtone ringtone;
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +47,10 @@ public class Game extends Activity {
             text.setTextColor(Color.parseColor(color1));
             text.setTextSize(rd3);
         }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        ringtone.setLooping(true);
         ringtone.play();
     }
 

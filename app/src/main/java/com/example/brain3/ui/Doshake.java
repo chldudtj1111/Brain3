@@ -2,11 +2,14 @@ package com.example.brain3.ui;
 
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import com.example.brain3.R;
 import java.util.Random;
@@ -15,6 +18,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Vibrator;
+import android.view.WindowManager;
 
 public class Doshake extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class Doshake extends AppCompatActivity {
     public static Context context_main;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +55,13 @@ public class Doshake extends AppCompatActivity {
                 vibrator.vibrate(500);
             }
         });
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
+
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        ringtone.setLooping(true);
         ringtone.play();
     }
 

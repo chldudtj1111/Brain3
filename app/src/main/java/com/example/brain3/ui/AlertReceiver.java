@@ -6,13 +6,18 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Message;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import android.os.Handler;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.brain3.R;
 
 import java.util.Random;
@@ -32,6 +37,7 @@ public class AlertReceiver extends Activity {
     };
 
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +49,10 @@ public class AlertReceiver extends Activity {
                 return false;
             }
         });
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
+        ringtone.setLooping(true);
         ringtone.play();
 
     }
