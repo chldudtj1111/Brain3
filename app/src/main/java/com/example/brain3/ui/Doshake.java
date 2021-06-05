@@ -72,6 +72,7 @@ public class Doshake extends AppCompatActivity {
 
     }
 
+
     public static class ShakeDetector
             // 센서 이벤트를 들을 listener를 충족하는 class
             implements SensorEventListener {
