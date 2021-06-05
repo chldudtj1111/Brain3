@@ -52,6 +52,7 @@ public class Game extends Activity {
         ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
         ringtone.setLooping(true);
         ringtone.play();
+        System.out.println(text);
     }
 
     public void EventBtn1(View v) {
@@ -80,7 +81,6 @@ public class Game extends Activity {
             result = "purple";
         }
 
-
         Intent intent = getIntent();
         Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
         if (result.equals(color1)) {
@@ -88,10 +88,8 @@ public class Game extends Activity {
             //ActivityCompat.finishAffinity(Game.this);
             //System.exit(0);
         } else {
-            startActivity(new Intent(this, Game.class));
-            ringtone.stop();
-            ringtone.play();
-
+            finish();
+            startActivity(intent);
         }
     }
 }

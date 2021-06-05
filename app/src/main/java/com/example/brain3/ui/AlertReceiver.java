@@ -65,36 +65,20 @@ public class AlertReceiver extends Activity {
         Random ra = new Random();
         int a = ra.nextInt(5);
         int seed1 = ra.nextInt(10);
-        if(seed1 == 1)
-            seed1 = 1;
-        else if (seed1==2)
-            seed1 = 2;
-        else if(seed1 == 3)
-            seed1 = 3;
-        else if (seed1==4)
-            seed1 = 4;
-        else if(seed1 == 5)
-            seed1 = 5;
-        else if (seed1==6)
-            seed1 = 6;
-        else if(seed1 == 7)
-            seed1 = 7;
-        else if (seed1==8)
-            seed1 = 8;
-        else if(seed1 == 9)
-            seed1 = 9;
-        else if (seed1==10)
-            seed1 = 10;
-        img.setX((int) (Math.random() * 800));
-        img.setY((int) (Math.random() * 800));
+
+        int set_X = 1000;
+        int set_Y = 1200;
+        int set_raX = ra.nextInt(700)+330;
+        int set_raY = ra.nextInt(900)+100;
+        img.setX(set_X - set_raX);
+        img.setY(set_Y - set_raY);
         img.setImageResource(imageResources[a]);
         mHandler.removeMessages(0);
         Random myr = new Random(seed1);
-        rd = (int) myr.nextInt(40)+15;
+        rd = (int) myr.nextInt(20)+15;
         if(count > rd){
-            rd = (int) myr.nextInt(40)+30;
+            rd = 35;
         }
-        System.out.println("값" + rd);
         if (count == rd) {
             int input = 0;
             count = 0;

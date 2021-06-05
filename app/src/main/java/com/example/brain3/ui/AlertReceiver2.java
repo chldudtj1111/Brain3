@@ -30,8 +30,7 @@ public class AlertReceiver2 extends AppCompatActivity {
             //finish();
             //android.os.Process.killProcess(android.os.Process.myPid());
         } else {
-            rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
-            startActivity(intent);
+            finish();
         }
 
     }
