@@ -2,6 +2,7 @@ package com.example.brain3.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -119,8 +120,11 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
                 stepCountView.setText(String.valueOf(currentSteps));
                 if(currentSteps==random.nextInt(9)+1){
 
-                    ActivityCompat.finishAffinity(Stepcount.this);
-                    System.exit(0);}
+                    Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
+                    startActivity(intent2);
+                    //ActivityCompat.finishAffinity(Stepcount.this);
+                    //System.exit(0);
+                    }
             }
 
         }

@@ -30,6 +30,7 @@ public class Doshake extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shakeactivity);
 
+        context_main = this;
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -55,6 +56,10 @@ public class Doshake extends AppCompatActivity {
     }
 
 
+    public static void goTosendSMSActivity(){
+        Intent intent = new Intent(context_main, sendSMS.class);
+        context_main.startActivity(intent);
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -122,8 +127,9 @@ public class Doshake extends AppCompatActivity {
             if (mListener != null) {
                 // x,y,z 축의 값을 받아온다
                 Random random = new Random();
-                int a = random.nextInt(10) + 1;
+                //int a = random.nextInt(10) + 1;
 
+                int a = 15;   //화면전환이 성공적인지 알아볼려고 15라는값줫음
 
                 float x = event.values[0];
                 float y = event.values[1];
@@ -161,7 +167,11 @@ public class Doshake extends AppCompatActivity {
                     mListener.onShake(mShakeCount);
 
                     if (mShakeCount == a) {
-                        android.os.Process.killProcess(android.os.Process.myPid());
+
+                        goTosendSMSActivity();
+
+
+                        //android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 }
             }
