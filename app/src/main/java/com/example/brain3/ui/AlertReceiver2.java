@@ -19,14 +19,16 @@ public class AlertReceiver2 extends AppCompatActivity {
     public void EventBtn1(View v){
         Random myr = new Random(1);
         Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
+        Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
         int rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
         EditText editText = (EditText)findViewById(R.id.editTextNumber2);
         String text1 = editText.getText().toString();
         int result = Integer.parseInt(text1);
         if (result == rd2) {
-            moveTaskToBack(true);
-            finish();
-            android.os.Process.killProcess(android.os.Process.myPid());
+            startActivity(intent2);
+            //moveTaskToBack(true);
+            //finish();
+            //android.os.Process.killProcess(android.os.Process.myPid());
         } else {
             rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
             startActivity(intent);

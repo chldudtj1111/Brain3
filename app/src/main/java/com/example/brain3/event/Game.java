@@ -1,8 +1,5 @@
 package com.example.brain3.event;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,10 +7,10 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.example.brain3.R;
 import com.example.brain3.ui.sendSMS;
 
@@ -91,4 +88,3 @@ public class Game extends Activity {
         }
     }
 }
-//추가할미니게임tsxt

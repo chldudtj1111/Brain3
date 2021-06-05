@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.brain3">
 
-    <uses-feature android:name="android.hardware.sensor.stepdetector" />
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
 
     <application
         android:allowBackup="true"
@@ -24,9 +22,7 @@
         <activity android:name=".ui.Stepcount"></activity>
         <activity android:name=".ui.AlertReceiver"></activity>
         <activity android:name=".ui.AlertReceiver2"></activity>
-        <activity android:name=".ui.Howmanyshake"></activity>
         <activity android:name=".ui.Doshake"></activity>
-        <activity android:name=".ui.hello"></activity>
         <activity android:name=".ui.sendSMS"></activity>
         <activity android:name=".event.Game"></activity>
 
@@ -34,9 +30,9 @@
 
     </application>
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
-    <uses-permission android:name = "android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
-
+    <uses-feature android:name="android.hardware.sensor.stepdetector" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
 
 </manifest>
