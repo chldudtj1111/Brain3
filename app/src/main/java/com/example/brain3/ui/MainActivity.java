@@ -4,7 +4,10 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.brain3.R;
 import com.example.brain3.event.Game;
@@ -29,6 +33,10 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
     private TextView mTextView;
     public int rd1;
+    long resTime = System.currentTimeMillis();
+    SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
+    Date currentTime = new Date ( );
+    String dTime = formatter.format ( currentTime );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             break;
         }
         mTextView.setText(timeText);
+        Toast.makeText(this,          // 현재 화면의 제어권자
+                (DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()))+"에 울립니다", // 보여줄 메시지
+                Toast.LENGTH_LONG)    // 보여줄 기간 (길게, 짧게)
+                .show();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
