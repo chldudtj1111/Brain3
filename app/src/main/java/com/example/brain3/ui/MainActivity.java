@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        //rd1 = random.nextInt(3)+1;
+        //rd1 = random.nextInt(4)+1;
 
         rd1=1;
         if (rd1 == 1) {

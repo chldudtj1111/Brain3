@@ -80,7 +80,7 @@ public class Game extends Activity {
             result = "#ffa500";
         }
         if (result.equals("노란색") || result.equals("노랑") || result.equals("노랑색")) {
-            result = "ffff00";
+            result = "#ffff00";
         }
         if (result.equals("초록색") || result.equals("초록")) {
             result = "#008000";
