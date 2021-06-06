@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class Game extends Activity {
     public String[] text1 = {"빨간색", "주황색", "노란색", "초록색", "파란색", "남색", "보라색"};
-    public String[] text2 = {"red", "orange", "#ffff00", "green", "blue", "navy", "purple"};
+    public String[] text2 = {"#ff0000", "#ffa500", "#ffff00", "#008000", "#0000ff", "#000080", "#800080"};
     public String color1;
     public int rd, rd2, rd3;
     public TextView text = null;
@@ -39,8 +39,8 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorgm);
         ran = new Random();
-        rd = ran.nextInt(6);
-        rd2 = ran.nextInt(6);
+        rd = ran.nextInt(7);
+        rd2 = ran.nextInt(7);
         rd3 = ran.nextInt(70) + 30;
         color1 = text2[rd2];
         text = (TextView) findViewById(R.id.text);
@@ -49,8 +49,8 @@ public class Game extends Activity {
             rd = ran.nextInt(6);
             rd2 = ran.nextInt(6);
         } else {
-            text.setText(text1[rd]);
-            text.setTextColor(Color.parseColor(color1));
+            text.setText(String.valueOf(text1[rd]));
+            text.setTextColor(Color.parseColor(String.valueOf(color1)));
             text.setTextSize(rd3);
 
         }
@@ -73,44 +73,54 @@ public class Game extends Activity {
     public void EventBtn1(View v) {
         editText = (EditText) findViewById(R.id.editTextTextMultiLine);
         result = editText.getText().toString();
-
         if (result.equals("빨간색") || result.equals("빨강") || result.equals("빨강색")) {
-            result = "red";
+            result = "#ff0000";
         }
         if (result.equals("주황색") || result.equals("주황")) {
-            result = "orange";
+            result = "#ffa500";
         }
         if (result.equals("노란색") || result.equals("노랑") || result.equals("노랑색")) {
             result = "ffff00";
         }
         if (result.equals("초록색") || result.equals("초록")) {
-            result = "green";
+            result = "#008000";
         }
         if (result.equals("파란색") || result.equals("파랑") || result.equals("파랑색")) {
-            result = "blue";
+            result = "#0000ff";
         }
         if (result.equals("남색") || result.equals("남")) {
-            result = "navy";
+            result = "#000080";
         }
         if (result.equals("보라색") || result.equals("보라")) {
-            result = "purple";
+            result = "#800080";
         }
         Intent intent = getIntent();
         Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
-
         if (result.equals(color1)) {
-            count++;
+            count = count+1;
         }
         editText.setText("");
         rd = ran.nextInt(6);
         rd2 = ran.nextInt(6);
         rd3 = ran.nextInt(70) + 30;
         color1 = text2[rd2];
-        text.setText(text1[rd]);
-        text.setTextColor(Color.parseColor(color1));
+        if (text.getText().length() <=0){
+            text.setText(String.valueOf(text1[rd]));
+            text.setTextColor(Color.parseColor(String.valueOf(color1)));
+        }
+        else if (color1.getBytes().length <= 0){
+            text.setText(String.valueOf(text1[rd]));
+            text.setTextColor(Color.parseColor(String.valueOf(color1)));
+        }
+        text.setText(String.valueOf(text1[rd]));
+        text.setTextColor(Color.parseColor(String.valueOf(color1)));
         text.setTextSize(rd3);
         if (count == 3)
             startActivity(intent2);
+        System.out.println(count);
+
+
+
 
     }
 }
