@@ -48,7 +48,8 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
     SensorManager sensorManager;
     Sensor stepCountSensor;
     TextView stepCountView;
-
+    Random createRandom = new Random();
+    int x = createRandom.nextInt(15)+10;
 
     // 현재 걸음 수
     int currentSteps = 0;
@@ -112,7 +113,6 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Random random = new Random();
 
         // 걸음 센서 이벤트 발생시
         if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR){
@@ -120,8 +120,9 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
             if(event.values[0]==1.0f){
                 // 센서 이벤트가 발생할때 마다 걸음수 증가
                 currentSteps++;
+
                 stepCountView.setText(String.valueOf(currentSteps));
-                if(currentSteps==random.nextInt(9)+1){
+                if(currentSteps==x){
 
                     Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
                     startActivity(intent2);

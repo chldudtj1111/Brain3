@@ -72,7 +72,7 @@ public class Doshake extends AppCompatActivity {
                  */
                 int red,blue,green=0;
                 Random ra = new Random();
-                int a = ra.nextInt(4);
+                int a = ra.nextInt(4)+1;
                 int colorcount=0;
 
 
