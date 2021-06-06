@@ -24,15 +24,6 @@ public class AfterShake extends Activity {
         setContentView(R.layout.after_shake);
 
 
-
-
-
-
-
-
-
-
-
         text1 = (TextView) findViewById(R.id.textView6);
 
         text1.setText("" + b +"번째 색깔은 무엇인가요?");
