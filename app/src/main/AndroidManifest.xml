@@ -25,6 +25,7 @@
         <activity android:name=".ui.Doshake"></activity>
         <activity android:name=".ui.sendSMS"></activity>
         <activity android:name=".event.Game"></activity>
+        <activity android:name=".ui.AfterShake"></activity>
 
 
 

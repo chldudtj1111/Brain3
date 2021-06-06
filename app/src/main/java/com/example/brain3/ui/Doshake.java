@@ -16,18 +16,24 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import com.example.brain3.R;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Parcelable;
 import android.os.Vibrator;
 import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-
+import java.util.ArrayList;
 public class Doshake extends AppCompatActivity {
+
+
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -35,7 +41,11 @@ public class Doshake extends AppCompatActivity {
     public static final int sub = 1001;
     public static Context context_main;
     LinearLayout layout;
+    private static ArrayList<String> testList = new ArrayList<String>();
 
+
+    private static Random ra = new Random();
+    private static int a= ra.nextInt(3);
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -63,19 +73,32 @@ public class Doshake extends AppCompatActivity {
                  */
                 int red,blue,green=0;
                 Random ra = new Random();
-                int a = ra.nextInt(5);
+                int a = ra.nextInt(3);
+                int colorcount=0;
 
 
-                red=(int)(Math.random()*255);
-                blue=(int)(Math.random()*255);
-                green=(int)(Math.random()*255);
 
-                layout.setBackgroundColor(Color.rgb(red,green,blue));
+                if(a==1){
+                layout.setBackgroundColor(Color.RED);
+                    testList.add("빨간색");
+
+                }
+                else if(a==2){
+                    layout.setBackgroundColor(Color.GREEN);
+                    testList.add("초록색");}
+                else if(a==3){
+                    layout.setBackgroundColor(Color.BLUE);
+                    testList.add("파란색");}
+                else{
+                    layout.setBackgroundColor(Color.YELLOW);
+                    testList.add("노란색");}
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);
 
+                }
 
-            }
+
+
         });
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
@@ -86,6 +109,15 @@ public class Doshake extends AppCompatActivity {
         player.start();
     }
 
+    public static void goToAfterShakeActivity(){
+        Intent intent = new Intent(context_main, AfterShake.class);
+        intent.putExtra("숫자", a);
+
+        intent.putStringArrayListExtra("ArrayList", testList);
+
+
+        context_main.startActivity(intent);
+    }
 
     public static void goTosendSMSActivity(){
         Intent intent = new Intent(context_main, sendSMS.class);
@@ -207,7 +239,8 @@ public class Doshake extends AppCompatActivity {
                     }
                     if (mShakeCount == 10) {
 
-                        goTosendSMSActivity();
+
+                        goToAfterShakeActivity();
 
 
                         //android.os.Process.killProcess(android.os.Process.myPid());
