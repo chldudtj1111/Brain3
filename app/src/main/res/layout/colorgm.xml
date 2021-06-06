@@ -7,7 +7,7 @@
     tools:context=".event.Game">
 
     <TextView
-        android:id="@+id/coltext"
+        android:id="@+id/text"
         android:layout_width="360dp"
         android:layout_height="322dp"
         android:gravity="center|center_horizontal"
