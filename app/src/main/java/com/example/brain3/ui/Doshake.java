@@ -41,8 +41,7 @@ public class Doshake extends AppCompatActivity {
     public static final int sub = 1001;
     public static Context context_main;
     LinearLayout layout;
-    private static ArrayList<String> testList = new ArrayList<String>();
-
+    private static  ArrayList<String> colors = new ArrayList<>();
 
     private static Random ra = new Random();
     private static int a= ra.nextInt(3);
@@ -73,25 +72,25 @@ public class Doshake extends AppCompatActivity {
                  */
                 int red,blue,green=0;
                 Random ra = new Random();
-                int a = ra.nextInt(3);
+                int a = ra.nextInt(4);
                 int colorcount=0;
 
 
 
                 if(a==1){
                 layout.setBackgroundColor(Color.RED);
-                    testList.add("빨간색");
+                    colors.add("빨간색");
 
                 }
                 else if(a==2){
                     layout.setBackgroundColor(Color.GREEN);
-                    testList.add("초록색");}
+                    colors.add("초록색");}
                 else if(a==3){
                     layout.setBackgroundColor(Color.BLUE);
-                    testList.add("파란색");}
+                    colors.add("파란색");}
                 else{
                     layout.setBackgroundColor(Color.YELLOW);
-                    testList.add("노란색");}
+                    colors.add("노란색");}
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);
 
@@ -110,10 +109,11 @@ public class Doshake extends AppCompatActivity {
     }
 
     public static void goToAfterShakeActivity(){
+
         Intent intent = new Intent(context_main, AfterShake.class);
         intent.putExtra("숫자", a);
 
-        intent.putStringArrayListExtra("ArrayList", testList);
+        intent.putStringArrayListExtra("ArrayList", colors  );
 
 
         context_main.startActivity(intent);
@@ -231,12 +231,7 @@ public class Doshake extends AppCompatActivity {
 
                     mListener.onShake(mShakeCount);
 
-                    if(mShakeCount == a){
 
-
-
-
-                    }
                     if (mShakeCount == 10) {
 
 
