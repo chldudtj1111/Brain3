@@ -1,11 +1,13 @@
 package com.example.brain3.ui;
 
+
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.media.MediaParser;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
@@ -20,7 +22,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Vibrator;
+import android.text.style.BackgroundColorSpan;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 public class Doshake extends AppCompatActivity {
 
@@ -29,14 +34,18 @@ public class Doshake extends AppCompatActivity {
     private ShakeDetector mShakeDetector;
     public static final int sub = 1001;
     public static Context context_main;
+    LinearLayout layout;
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shakeactivity);
+        setContentView(R.layout.changecolor);
 
+
+        layout=findViewById(R.id.layout);
+        layout.setBackgroundColor(Color.WHITE);
         context_main = this;
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
@@ -52,9 +61,20 @@ public class Doshake extends AppCompatActivity {
                  * method you would use to setup whatever you want done once the
                  * device has been shook.
                  */
+                int red,blue,green=0;
+                Random ra = new Random();
+                int a = ra.nextInt(5);
 
+
+                red=(int)(Math.random()*255);
+                blue=(int)(Math.random()*255);
+                green=(int)(Math.random()*255);
+
+                layout.setBackgroundColor(Color.rgb(red,green,blue));
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(500);
+
+
             }
         });
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
@@ -113,6 +133,7 @@ public class Doshake extends AppCompatActivity {
         private long mShakeTimestamp;
         // 횟수
         private int mShakeCount;
+        private View view;
 
 
         // listener setting
@@ -175,9 +196,16 @@ public class Doshake extends AppCompatActivity {
                     mShakeCount++;
                     // 흔들렸을 때 행동을 설정한다
 
+
                     mListener.onShake(mShakeCount);
 
-                    if (mShakeCount == a) {
+                    if(mShakeCount == a){
+
+
+
+
+                    }
+                    if (mShakeCount == 10) {
 
                         goTosendSMSActivity();
 
@@ -190,4 +218,3 @@ public class Doshake extends AppCompatActivity {
         }
     }
 }
-
