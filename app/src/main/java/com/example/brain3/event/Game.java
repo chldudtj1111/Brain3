@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import androidx.annotation.RequiresApi;
 import com.example.brain3.R;
 import com.example.brain3.ui.sendSMS;
 
+import java.util.Random;
+
 public class Game extends Activity {
     public String[] text1 = {"빨간색", "주황색", "노란색", "초록색", "파란색", "남색", "보라색"};
     public String[] text2 = {"red", "orange", "yellow", "green", "blue", "navy", "purple"};
@@ -26,26 +29,31 @@ public class Game extends Activity {
     public TextView text;
     public Uri notification;
     public Ringtone ringtone;
+    public Random ran;
+    public int count = 0;
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorgm);
-
-        rd = (int) (Math.random() * 6);
-        rd2 = (int) (Math.random() * 6);
-        rd3 = (int) (Math.random()*90)+20;
+        ran = new Random();
+        rd = ran.nextInt(6);
+        rd2 = ran.nextInt(6);
+        rd3 = ran.nextInt(70)+30;
         color1 = text2[rd2];
-
-        if (rd == rd2){
-            rd = (int) (Math.random() * 7);
-            rd2 = (int) (Math.random() * 7);
+        text = (TextView) findViewById(R.id.coltext);
+        if(text.getText().equals(null)){
+            text.setText(text1[rd]);
         }
         else {
-            text = (TextView) findViewById(R.id.coltext);
-            text.setText(text1[rd+1]);
-            text.setTextColor(Color.parseColor(color1));
-            text.setTextSize(rd3);
+            if (rd == rd2) {
+                rd = ran.nextInt(6);
+                rd2 = ran.nextInt(6);
+            } else {
+                text.setText(text1[rd]);
+                text.setTextColor(Color.parseColor(color1));
+                text.setTextSize(rd3);
+            }
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -83,13 +91,21 @@ public class Game extends Activity {
 
         Intent intent = getIntent();
         Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
+
         if (result.equals(color1)) {
-            startActivity(intent2);
-            //ActivityCompat.finishAffinity(Game.this);
-            //System.exit(0);
-        } else {
-            finish();
-            startActivity(intent);
+            count ++;
         }
+        if(count == 3)
+            startActivity(intent2);
+        editText.setText("");
+        rd = ran.nextInt(6);
+        rd2 = ran.nextInt(6);
+        rd3 = ran.nextInt(70) + 30;
+        color1 = text2[rd2];
+        text.setText(text1[rd]);
+        text.setTextColor(Color.parseColor(color1));
+        text.setTextSize(rd3);
+
+
     }
 }

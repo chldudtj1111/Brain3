@@ -8,18 +8,15 @@
 
     <TextView
         android:id="@+id/coltext"
+        android:layout_width="360dp"
+        android:layout_height="322dp"
+        android:gravity="center|center_horizontal"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.275"
-        android:layout_width="221dp"
-        android:layout_height="93dp"
-        android:gravity="center_horizontal"
-        android:text="text"
-        android:textSize="70sp"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="155dp" />
+        app:layout_constraintVertical_bias="0.079" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
