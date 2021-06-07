@@ -27,6 +27,7 @@
 
         <ListView
             android:id="@+id/mlist"
+
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_alignParentBottom="true"
@@ -35,6 +36,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
             android:background="@drawable/divider" />
 
