@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         //rd1 = random.nextInt(4)+1;
 
-        rd1=1;
+        rd1=3;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
