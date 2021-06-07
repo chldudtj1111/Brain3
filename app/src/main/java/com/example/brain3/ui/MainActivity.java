@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.brain3.R;
 import com.example.brain3.event.Game;
+import com.example.brain3.for_list.AddEditAlarmActivity;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -48,8 +49,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                DialogFragment timePicker = new TimePickerFragment();
-                timePicker.show(getSupportFragmentManager(), "time picker");
+              //  Intent intent = new Intent(AddEditAlarmActivity.class);
             }
 
         });

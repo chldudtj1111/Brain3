@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brain3">
 
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.change_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,29 +28,13 @@
         </activity>
 
         <activity android:name=".ui.Stepcount"/>
+        <activity android:name=".ui.EditAlarm"/>
         <activity android:name=".ui.AlertReceiver"/>
         <activity android:name=".ui.AlertReceiver2"/>
         <activity android:name=".ui.Doshake"/>
         <activity android:name=".ui.sendSMS"/>
         <activity android:name=".event.Game"/>
         <activity android:name=".ui.AfterShake"/>
-        <activity android:name=".for_list.AddEditAlarmActivity" />
-
-        <activity
-            android:name=".for_list.AlarmLandingPageActivity"
-        android:theme="@style/AlertLandingPageTheme" />
-
-        <service android:name=".for_list.LoadAlarmsService" />
-
-        <receiver android:name=".for_list.LoadAlarmsReceiver" />
-
-        <receiver android:name=".for_list.AlarmReceiver" />
-
-        <receiver android:name=".for_list.BootReceiver" android:enabled="true" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
 
 
 
