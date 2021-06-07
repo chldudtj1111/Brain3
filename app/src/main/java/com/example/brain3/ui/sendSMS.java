@@ -72,6 +72,7 @@ public class sendSMS extends Activity {
                     new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                     ContactsContract.CommonDataKinds.Phone.NUMBER},null,null,null);
             cursor.moveToFirst();
+
             smsNumber.setText(cursor.getString(1));
             cursor.close();
         }
