@@ -21,19 +21,16 @@ public class AlertReceiver2 extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tabactivity2);
     }
-    public void EventBtn1(View v){
+    public void EventBtn1(View v) {
         Random myr = new Random(1);
         Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
         Intent intent2 = new Intent(getApplicationContext(), sendSMS.class);
-        int rd2 = ((AlertReceiver)AlertReceiver.context_main).rd;
-        EditText editText = (EditText)findViewById(R.id.editTextNumber2);
+        int rd2 = ((AlertReceiver) AlertReceiver.context_main).rd;
+        EditText editText = (EditText) findViewById(R.id.editTextNumber2);
         String text1 = editText.getText().toString();
         int result = Integer.parseInt(text1);
         if (result == rd2) {
             startActivity(intent2);
-            //moveTaskToBack(true);
-            //finish();
-            //android.os.Process.killProcess(android.os.Process.myPid());
         } else {
             finish();
         }

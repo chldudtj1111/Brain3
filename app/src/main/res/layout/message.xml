@@ -9,16 +9,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.sendSMS"
-    android:orientation="vertical" >
-
+    android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:text="받는사람" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:src="@android:drawable/sym_action_call" />
 
     <EditText
         android:id="@+id/smsNumber"
-        android:layout_width="318dp"
+        android:layout_width="222dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone">
@@ -46,11 +53,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Send" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/sym_action_call" />
 
 </LinearLayout>

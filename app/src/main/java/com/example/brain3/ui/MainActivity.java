@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_alarm);
+        setContentView(R.layout.layout_main);
         mTextView =  findViewById(R.id.textView);
         Button button = (Button) findViewById(R.id.button_timepicker);
         button.setOnClickListener(new View.OnClickListener(){
@@ -111,26 +111,21 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
-            if (c.before(Calendar.getInstance())) {//this line compares the time set to the current time
-                c.add(Calendar.DATE, 1);//the alarm will be set for next day now
+            if (c.before(Calendar.getInstance())) {
+                c.add(Calendar.DATE, 1);
             }
-
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-
-
         }
         if (rd1 == 2) {
             Intent intent = new Intent(this, Doshake.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
-
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-
         }
         if (rd1 == 3) {
             Intent intent = new Intent(this, AlertReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
-            if (c.before(Calendar.getInstance())) {//this line compares the time set to the current time
-                c.add(Calendar.DATE, 1);//the alarm will be set for next day now
+            if (c.before(Calendar.getInstance())) {
+                c.add(Calendar.DATE, 1);
             }
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
 
@@ -138,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         if (rd1 == 4) {
             Intent intent = new Intent(this, Stepcount.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
-            if (c.before(Calendar.getInstance())) {//this line compares the time set to the current time
-                c.add(Calendar.DATE, 1);//the alarm will be set for next day now
+            if (c.before(Calendar.getInstance())) {
+                c.add(Calendar.DATE, 1);
             }
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
 
@@ -153,35 +148,31 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //Random random = new Random();
-        rd1=2;
+        rd1=3;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
-            alarmlist.clear();
         }
         if (rd1 == 2) {
             Intent intent = new Intent(this, Doshake.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
-            alarmlist.clear();
         }
         if (rd1 == 3) {
             Intent intent = new Intent(this, AlertReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
-            alarmlist.clear();
         }
         if (rd1 == 4) {
             Intent intent = new Intent(this, Stepcount.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
-            alarmlist.clear();
         }
-
+        alarmlist.clear();
     }
 }
