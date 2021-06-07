@@ -21,15 +21,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:text="@string/time"
+            android:text="@string/days"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:text="시간" />
+            tools:text="리스트" />
 
+        <ListView
+            android:id="@+id/mlist"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:fastScrollEnabled="true" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
             android:background="@drawable/divider" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/list_padding_vertical_small"
+            android:text="@string/time"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:text="시간" />
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -186,7 +201,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="open time picker" />
+            android:text="알람 설정하기" />
 
         <Button
             android:id="@+id/button_cancel"
@@ -195,15 +210,8 @@
             android:layout_below="@+id/button_timepicker"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="27dp"
-            android:text="cancel alarm" />
+            android:text="알람 취소하기" />
 
-        <ListView
-            android:id="@+id/mlist"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="2dp"
-            android:fastScrollEnabled="true" />
 
     </LinearLayout>
 
