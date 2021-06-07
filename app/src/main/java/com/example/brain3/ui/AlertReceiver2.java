@@ -1,19 +1,26 @@
 package com.example.brain3.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.brain3.R;
 
 import java.util.Random;
 
-public class AlertReceiver2 extends AppCompatActivity {
+public class AlertReceiver2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tabactivity2);
     }
     public void EventBtn1(View v){
@@ -32,6 +39,18 @@ public class AlertReceiver2 extends AppCompatActivity {
         } else {
             finish();
         }
+    }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
+    }
+    protected void onPause() {
+        super.onPause();
+        ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.moveTaskToFront(getTaskId(), 0);
+        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,6 +1,8 @@
 package com.example.brain3.ui;
 
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 
@@ -28,13 +30,13 @@ import android.os.Parcelable;
 import android.os.Vibrator;
 import android.text.style.BackgroundColorSpan;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import java.util.ArrayList;
-public class Doshake extends AppCompatActivity {
-
-
-
+public class Doshake extends Activity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
@@ -50,8 +52,8 @@ public class Doshake extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.changecolor);
-
 
         layout=findViewById(R.id.layout);
         layout.setBackgroundColor(Color.WHITE);
@@ -75,12 +77,9 @@ public class Doshake extends AppCompatActivity {
                 int a = ra.nextInt(4)+1;
                 int colorcount=0;
 
-
-
                 if(a==1){
                 layout.setBackgroundColor(Color.RED);
                     colors.add("빨간색");
-
                 }
                 else if(a==2){
                     layout.setBackgroundColor(Color.GREEN);
@@ -95,8 +94,6 @@ public class Doshake extends AppCompatActivity {
                 vibrator.vibrate(500);
 
                 }
-
-
 
         });
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
@@ -137,9 +134,7 @@ public class Doshake extends AppCompatActivity {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
-
     }
-
 
     public static class ShakeDetector
             // 센서 이벤트를 들을 listener를 충족하는 class
@@ -228,21 +223,20 @@ public class Doshake extends AppCompatActivity {
                     mShakeCount++;
                     // 흔들렸을 때 행동을 설정한다
 
-
                     mListener.onShake(mShakeCount);
 
-
                     if (mShakeCount == 10) {
-
-
                         goToAfterShakeActivity();
-
-
                         //android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 }
             }
 
         }
+    }
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,6 +1,8 @@
 package com.example.brain3.event;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Ringtone;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -118,9 +121,17 @@ public class Game extends Activity {
         if (count == 3)
             startActivity(intent2);
         System.out.println(count);
-
-
-
-
+    }
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
+    }
+    protected void onPause() {
+        super.onPause();
+        ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.moveTaskToFront(getTaskId(), 0);
+        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
     }
 }

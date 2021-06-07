@@ -1,6 +1,7 @@
 package com.example.brain3.ui;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Ringtone;
@@ -15,6 +16,7 @@ import android.os.Handler;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -54,7 +56,6 @@ public class AlertReceiver extends Activity {
         Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
         ringtone.setLooping(true);
         ringtone.play();
-
     }
 
     public void mOnclick(View v) {
@@ -75,18 +76,30 @@ public class AlertReceiver extends Activity {
         img.setImageResource(imageResources[a]);
         mHandler.removeMessages(0);
         Random myr = new Random(seed1);
-        rd = (int) myr.nextInt(20)+15;
+        //rd = (int) myr.nextInt(20)+15;
+        rd=1;
         if(count > rd){
             rd = 35;
         }
         if (count == rd) {
             int input = 0;
             count = 0;
-            Intent intent = new Intent(getApplicationContext(), AlertReceiver2.class);
+            Intent intent = new Intent(getBaseContext(), AlertReceiver2.class);
             intent.putExtra("숫자", rd);
             context_main = this;
             startActivity(intent);
         }
-
+    }
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
+    }
+    protected void onPause() {
+        super.onPause();
+        ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.moveTaskToFront(getTaskId(), 0);
+        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
     }
 }

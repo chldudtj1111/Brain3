@@ -71,6 +71,11 @@ public class sendSMS extends Activity {
             Toast.makeText(getApplicationContext(),"Permission Denied!",Toast.LENGTH_SHORT).show();
         }
     }
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
+    }
 }
 
 
