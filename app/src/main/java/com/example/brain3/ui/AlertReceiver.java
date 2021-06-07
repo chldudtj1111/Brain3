@@ -53,10 +53,6 @@ public class AlertReceiver extends Activity {
                 return false;
             }
         });
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-
-
         MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
         player.setLooping(true);
         player.start();
