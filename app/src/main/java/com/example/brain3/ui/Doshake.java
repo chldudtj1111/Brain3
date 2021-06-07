@@ -133,6 +133,10 @@ public class Doshake extends Activity {
     public void onPause() {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
+        ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.moveTaskToFront(getTaskId(), 0);
+        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
         super.onPause();
     }
 
