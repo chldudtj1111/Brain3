@@ -33,7 +33,8 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
     private TextView mTextView;
     public int rd1;
-    private static  ArrayList<String> alarmlist = new ArrayList<>();
+    public static ArrayList<String> alarmlist = new ArrayList<>();
+    public  static  ArrayList<Calendar> timelist = new ArrayList<>();
     long resTime = System.currentTimeMillis();
     SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
     Date currentTime = new Date ( );
@@ -62,13 +63,26 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+
+        int x=0;
         Calendar c = Calendar.getInstance();
+
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
+
+
         updateTimeText(c);
-        startAlarm(c);
+        timelist.add(c);
+        startAlarm(timelist.get(x));
+        x++;
+
     }
+
+
+
+
     private void updateTimeText(Calendar c){
         String timeText = "Alarm set for : ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
@@ -80,9 +94,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         lv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+
         mTextView.setText(timeText);
         Toast.makeText(this,(DateFormat.getTimeInstance(DateFormat.SHORT)
-                .format(c.getTime()))+"에 울립니다",
+                        .format(c.getTime()))+"에 울립니다",
                 Toast.LENGTH_LONG)    // 보여줄 기간 (길게, 짧게)
                 .show();
     }
@@ -101,15 +116,15 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             }
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, 3000, 6000, pendingIntent);
+
+
         }
         if (rd1 == 2) {
             Intent intent = new Intent(this, Doshake.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
-            if (c.before(Calendar.getInstance())) {//this line compares the time set to the current time
-                c.add(Calendar.DATE, 1);//the alarm will be set for next day now
-            }
+
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
         }
         if (rd1 == 3) {
             Intent intent = new Intent(this, AlertReceiver.class);
@@ -118,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 c.add(Calendar.DATE, 1);//the alarm will be set for next day now
             }
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
         }
         if (rd1 == 4) {
             Intent intent = new Intent(this, Stepcount.class);
@@ -126,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 c.add(Calendar.DATE, 1);//the alarm will be set for next day now
             }
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
         }
         if (c.before((Calendar.getInstance()))) {
             c.add(Calendar.DATE, 1);

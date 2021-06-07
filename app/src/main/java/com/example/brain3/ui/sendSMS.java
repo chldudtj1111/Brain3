@@ -3,6 +3,7 @@ package com.example.brain3.ui;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
@@ -38,6 +39,8 @@ public class sendSMS extends Activity {
                 if(ContextCompat.checkSelfPermission(sendSMS.this, Manifest.permission.SEND_SMS)
                         == PackageManager.PERMISSION_GRANTED){
                     sendSMS();
+                    Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent2);
                 }else{
                     ActivityCompat.requestPermissions(sendSMS.this,new String[]{Manifest.permission.SEND_SMS},100);
                 }
@@ -56,9 +59,7 @@ public class sendSMS extends Activity {
         }else{
             Toast.makeText(this, "모두 입력해 주세요", Toast.LENGTH_SHORT).show();
         }
-        moveTaskToBack(true);
-        finish();
-        android.os.Process.killProcess(android.os.Process.myPid());
+        ;
     }
 
     @Override
