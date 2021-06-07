@@ -1,7 +1,5 @@
 package com.example.brain3.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -45,12 +43,5 @@ public class AlertReceiver2 extends Activity {
     public void onBackPressed() {
         //super.onBackPressed();
         Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
-    }
-    protected void onPause() {
-        super.onPause();
-        ActivityManager activityManager = (ActivityManager) getApplicationContext()
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.moveTaskToFront(getTaskId(), 0);
-        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
     }
 }

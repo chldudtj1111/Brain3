@@ -7,35 +7,26 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
-import android.media.MediaParser;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import com.example.brain3.R;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Parcelable;
 import android.os.Vibrator;
-import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 public class Doshake extends Activity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -133,10 +124,6 @@ public class Doshake extends Activity {
     public void onPause() {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
-        ActivityManager activityManager = (ActivityManager) getApplicationContext()
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.moveTaskToFront(getTaskId(), 0);
-        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
         super.onPause();
     }
 

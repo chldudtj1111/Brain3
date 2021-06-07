@@ -37,11 +37,12 @@ public class AlertReceiver extends Activity {
             mHandler.removeMessages(0);
         }
     };
+    private ActivityManager activityMzanager;
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabactivity);
         ImageView img = (ImageView) findViewById(R.id.imageView);
@@ -57,7 +58,6 @@ public class AlertReceiver extends Activity {
         ringtone.setLooping(true);
         ringtone.play();
     }
-
     public void mOnclick(View v) {
         text = (TextView) findViewById(R.id.textView);
         count++;
@@ -94,12 +94,5 @@ public class AlertReceiver extends Activity {
     public void onBackPressed() {
         //super.onBackPressed();
         Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
-    }
-    protected void onPause() {
-        super.onPause();
-        ActivityManager activityManager = (ActivityManager) getApplicationContext()
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.moveTaskToFront(getTaskId(), 0);
-        Toast.makeText(this, "메뉴 사용불가.", Toast.LENGTH_SHORT).show();
     }
 }

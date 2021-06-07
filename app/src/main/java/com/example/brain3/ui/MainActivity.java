@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         adapter.notifyDataSetChanged();
 
         mTextView.setText(timeText);
-        Toast.makeText(this,          // 현재 화면의 제어권자
-                (DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()))+"에 울립니다", // 보여줄 메시지
+        Toast.makeText(this,(DateFormat.getTimeInstance(DateFormat.SHORT)
+                .format(c.getTime()))+"에 울립니다",
                 Toast.LENGTH_LONG)    // 보여줄 기간 (길게, 짧게)
                 .show();
     }
@@ -91,11 +91,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         Random random = new Random();
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-
         //rd1 = random.nextInt(4)+1;
-
-
-        rd1=2;
+        rd1=3;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
@@ -130,7 +127,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             }
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
-
+        if (c.before((Calendar.getInstance()))) {
+            c.add(Calendar.DATE, 1);
+        }
 
     }
 
@@ -143,24 +142,28 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            alarmlist.clear();
         }
         if (rd1 == 2) {
             Intent intent = new Intent(this, Doshake.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            alarmlist.clear();
         }
         if (rd1 == 3) {
             Intent intent = new Intent(this, AlertReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            alarmlist.clear();
         }
         if (rd1 == 4) {
             Intent intent = new Intent(this, Stepcount.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            alarmlist.clear();
         }
 
     }

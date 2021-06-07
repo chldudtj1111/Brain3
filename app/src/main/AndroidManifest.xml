@@ -5,6 +5,8 @@
 
 
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-feature android:name="android.hardware.sensor.stepdetector" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
@@ -26,13 +28,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.Stepcount"/>
-        <activity android:name=".ui.AlertReceiver"/>
-        <activity android:name=".ui.AlertReceiver2"/>
-        <activity android:name=".ui.Doshake"/>
-        <activity android:name=".ui.sendSMS"/>
-        <activity android:name=".event.Game"/>
-        <activity android:name=".ui.AfterShake"/>
+        <activity android:name=".ui.Stepcount"></activity>
+        <activity android:name=".ui.AlertReceiver"></activity>
+        <activity android:name=".ui.Doshake"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
+        <activity android:name=".ui.sendSMS"></activity>
+        <activity android:name=".event.Game"></activity>
+        <activity android:name=".ui.AfterShake"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
+        <activity android:name=".ui.AlertReceiver2"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
 
 
 

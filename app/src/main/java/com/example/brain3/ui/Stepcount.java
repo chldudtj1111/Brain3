@@ -7,40 +7,20 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-//5/15일//
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
-
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.brain3.R;
-import com.example.brain3.event.Game;
-
 import java.util.Random;
 
 public class Stepcount extends AppCompatActivity implements SensorEventListener {
@@ -134,8 +114,11 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
         }
 
     }
-
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "뒤로가기 사용불가.", Toast.LENGTH_SHORT).show();
+    }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
