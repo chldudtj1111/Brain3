@@ -4,7 +4,12 @@
     package="com.example.brain3">
 
 
-    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-feature android:name="android.hardware.sensor.stepdetector" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,31 +17,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Brain3">
+
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.Stepcount"></activity>
-        <activity android:name=".ui.AlertReceiver"></activity>
-        <activity android:name=".ui.Doshake"
-            android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name=".ui.sendSMS"></activity>
-        <activity android:name=".event.Game"></activity>
-        <activity android:name=".ui.AfterShake"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
-        <activity android:name=".ui.AlertReceiver2"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
+        <activity android:name=".ui.Stepcount"/>
+        <activity android:name=".ui.AlertReceiver"/>
+        <activity android:name=".ui.AlertReceiver2"/>
+        <activity android:name=".ui.Doshake"/>
+        <activity android:name=".ui.sendSMS"/>
+        <activity android:name=".event.Game"/>
+        <activity android:name=".ui.AfterShake"/>
+        <activity android:name=".for_list.AddEditAlarmActivity" />
+
+        <activity
+            android:name=".for_list.AlarmLandingPageActivity"
+            android:theme="@style/AlertLandingPageTheme" />
+
+        <service android:name=".for_list.LoadAlarmsService" />
+
+        <receiver android:name=".for_list.LoadAlarmsReceiver" />
+
+        <receiver android:name=".for_list.AlarmReceiver" />
+
+        <receiver android:name=".for_list.BootReceiver" android:enabled="true" android:exported="true">
+            <intent-filter android:priority="${bootPriority}">
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
 
 
     </application>
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-feature android:name="android.hardware.sensor.stepdetector" />
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
 </manifest>
