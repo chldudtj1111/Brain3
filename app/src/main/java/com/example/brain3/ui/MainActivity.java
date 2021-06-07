@@ -33,6 +33,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
     private TextView mTextView;
     public int rd1;
+    private static  ArrayList<String> alarmlist = new ArrayList<>();
     long resTime = System.currentTimeMillis();
     SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
     Date currentTime = new Date ( );
@@ -72,14 +73,13 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         String timeText = "Alarm set for : ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
         ListView lv = (ListView)findViewById(R.id.mlist);
-        ArrayList al = new ArrayList();
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, al);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, alarmlist);
+
+        alarmlist.add(DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()));
         lv.setAdapter(adapter);
-        while(true){
-            al.add(DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()));
-            adapter.notifyDataSetChanged();
-            break;
-        }
+        adapter.notifyDataSetChanged();
+
         mTextView.setText(timeText);
         Toast.makeText(this,          // 현재 화면의 제어권자
                 (DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()))+"에 울립니다", // 보여줄 메시지
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
 
         //rd1 = random.nextInt(4)+1;
 
-        rd1=1;
+
         rd1=2;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);

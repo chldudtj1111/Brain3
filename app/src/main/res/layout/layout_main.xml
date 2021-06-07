@@ -40,8 +40,9 @@
         android:id="@+id/mlist"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="500dp"
         android:fastScrollEnabled="true" />
 
 
