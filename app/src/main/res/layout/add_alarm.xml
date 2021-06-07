@@ -46,7 +46,7 @@
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
             android:text="@string/label"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:text="메모" />
+            tools:text="메세지" />
 
         <View
             android:layout_width="match_parent"
