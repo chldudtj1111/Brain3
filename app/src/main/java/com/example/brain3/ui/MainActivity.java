@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
     Date currentTime = new Date ( );
     String dTime = formatter.format ( currentTime );
+    ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,21 +64,15 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-
         int x=0;
         Calendar c = Calendar.getInstance();
-
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
-
-
         updateTimeText(c);
         timelist.add(c);
         startAlarm(timelist.get(x));
         x++;
-
     }
 
 
@@ -86,15 +81,11 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void updateTimeText(Calendar c){
         String timeText = "Alarm set for : ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        ListView lv = (ListView)findViewById(R.id.mlist);
-
+        lv = (ListView)findViewById(R.id.mlist);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, alarmlist);
-
         alarmlist.add(DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()));
         lv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-
         mTextView.setText(timeText);
         Toast.makeText(this,(DateFormat.getTimeInstance(DateFormat.SHORT)
                         .format(c.getTime()))+"에 울립니다",
@@ -105,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void startAlarm(Calendar c) {
         Random random = new Random();
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
         //rd1 = random.nextInt(4)+1;
         rd1=3;
         if (rd1 == 1) {
@@ -154,25 +144,34 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            timelist.clear();
+            alarmlist.clear();
         }
         if (rd1 == 2) {
             Intent intent = new Intent(this, Doshake.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            timelist.clear();
+            alarmlist.clear();
         }
         if (rd1 == 3) {
             Intent intent = new Intent(this, AlertReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            timelist.clear();
+            alarmlist.clear();
+
         }
         if (rd1 == 4) {
             Intent intent = new Intent(this, Stepcount.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
             alarmManager.cancel(pendingIntent);
             mTextView.setText("Alarm canceled");
+            timelist.clear();
+            alarmlist.clear();
         }
-        alarmlist.clear();
+
     }
 }
