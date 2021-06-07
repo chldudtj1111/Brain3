@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -65,11 +66,9 @@ public class Game extends Activity {
             text.setText(text1[rd]);
             text.setTextColor(Color.parseColor(color1));
         }
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-        notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
-        ringtone.setLooping(true);
-        ringtone.play();
+        MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
+        player.setLooping(true);
+        player.start();
         System.out.println(text);
     }
 
