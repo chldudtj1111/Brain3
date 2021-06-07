@@ -36,7 +36,9 @@
         android:id="@+id/smsText"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:ems="10" />
+        android:ems="10"
+        android:text="일어났습니다"
+        tools:text="일어났습니다" />
 
     <Button
         android:id="@+id/sendBtn"

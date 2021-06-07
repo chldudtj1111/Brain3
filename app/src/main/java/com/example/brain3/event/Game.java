@@ -68,7 +68,6 @@ public class Game extends Activity {
             text.setTextColor(Color.parseColor(color1));
         }
         MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
-        player.setVolume(20, 20);
         player.setLooping(true);
         player.start();
         System.out.println(text);
