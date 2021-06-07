@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -52,11 +53,13 @@ public class AlertReceiver extends Activity {
                 return false;
             }
         });
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
-        ringtone.setLooping(true);
-        ringtone.play();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
+
+        MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
+        player.setLooping(true);
+        player.start();
     }
     public void mOnclick(View v) {
         text = (TextView) findViewById(R.id.textView);

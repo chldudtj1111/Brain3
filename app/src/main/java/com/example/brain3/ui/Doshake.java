@@ -91,7 +91,7 @@ public class Doshake extends Activity {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
 
-        MediaPlayer player = MediaPlayer.create(this,R.raw.zz1);
+        MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
         player.setLooping(true);
         player.start();
     }
