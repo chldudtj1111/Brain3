@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.example.brain3.R;
 import com.example.brain3.event.Game;
-import com.example.brain3.for_list.AddEditAlarmActivity;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -38,22 +37,19 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
     Date currentTime = new Date ( );
     String dTime = formatter.format ( currentTime );
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
         mTextView =  findViewById(R.id.textView);
-
         Button button = (Button) findViewById(R.id.button_timepicker);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-              //  Intent intent = new Intent(AddEditAlarmActivity.class);
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
             }
-
         });
-
         Button buttonCancelAlarm = findViewById(R.id.button_cancel);
         buttonCancelAlarm.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -62,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             }
         });
     }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -70,11 +65,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
-
         updateTimeText(c);
         startAlarm(c);
     }
-
     private void updateTimeText(Calendar c){
         String timeText = "Alarm set for : ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
@@ -82,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         ArrayList al = new ArrayList();
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, al);
         lv.setAdapter(adapter);
-
         while(true){
             al.add(DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()));
             adapter.notifyDataSetChanged();
@@ -93,17 +85,15 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 (DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()))+"에 울립니다", // 보여줄 메시지
                 Toast.LENGTH_LONG)    // 보여줄 기간 (길게, 짧게)
                 .show();
-
     }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void startAlarm(Calendar c) {
         Random random = new Random();
-
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         //rd1 = random.nextInt(4)+1;
 
+        rd1=1;
         rd1=2;
         if (rd1 == 1) {
             Intent intent = new Intent(this, Game.class);
@@ -125,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, 0);
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
-
         if (c.before((Calendar.getInstance()))) {
             c.add(Calendar.DATE, 1);
         }
