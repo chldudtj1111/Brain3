@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_main);
+        setContentView(R.layout.add_alarm);
         mTextView =  findViewById(R.id.textView);
         Button button = (Button) findViewById(R.id.button_timepicker);
         button.setOnClickListener(new View.OnClickListener(){
