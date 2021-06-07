@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -67,6 +68,7 @@ public class Game extends Activity {
             text.setTextColor(Color.parseColor(color1));
         }
         MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
+        player.setVolume(20, 20);
         player.setLooping(true);
         player.start();
         System.out.println(text);

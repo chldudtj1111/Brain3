@@ -3,6 +3,7 @@ package com.example.brain3.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -69,6 +70,8 @@ public class Stepcount extends AppCompatActivity implements SensorEventListener 
 
 
         MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
+        AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build();
+        player.setAudioAttributes(audioAttributes);
         player.setLooping(true);
         player.start();
 

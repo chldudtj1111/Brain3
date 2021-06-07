@@ -9,6 +9,7 @@ import android.content.Intent;
 import androidx.annotation.RequiresApi;
 
 import android.graphics.Color;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -92,6 +93,8 @@ public class Doshake extends Activity {
 
 
         MediaPlayer player = MediaPlayer.create(this,R.raw.zz2);
+        AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build();
+        player.setAudioAttributes(audioAttributes);
         player.setLooping(true);
         player.start();
     }

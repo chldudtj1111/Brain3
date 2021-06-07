@@ -10,10 +10,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_alarm);
         mTextView =  findViewById(R.id.textView);
+
         Button button = (Button) findViewById(R.id.button_timepicker);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -64,8 +67,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-
-        int x=0;
+        int x = 0;
         Calendar c = Calendar.getInstance();
 
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -79,10 +81,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         x++;
 
     }
-
-
-
-
     private void updateTimeText(Calendar c){
         String timeText = "Alarm set for : ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
@@ -105,7 +103,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void startAlarm(Calendar c) {
         Random random = new Random();
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), AudioManager.FLAG_PLAY_SOUND);
         //rd1 = random.nextInt(4)+1;
         rd1=3;
         if (rd1 == 1) {
