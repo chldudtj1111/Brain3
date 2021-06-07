@@ -79,8 +79,8 @@ public class AlertReceiver extends Activity {
         img.setImageResource(imageResources[a]);
         mHandler.removeMessages(0);
         Random myr = new Random(seed1);
-        //rd = (int) myr.nextInt(20)+15;
-        rd=1;
+        rd = (int) myr.nextInt(20)+15;
+
         if(count > rd){
             rd = 35;
         }
